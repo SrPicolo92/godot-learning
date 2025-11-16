@@ -1,17 +1,269 @@
-[gd_scene load_steps=4 format=3 uid="uid://b058l4qfam4sn"]
+[gd_scene load_steps=13 format=3 uid="uid://b058l4qfam4sn"]
 
+[ext_resource type="Script" uid="uid://d1jai84e8lpp" path="res://scenes/game.gd" id="1_lbhrr"]
 [ext_resource type="Texture2D" uid="uid://doghmovcgeltw" path="res://graphics/map.png" id="1_uwrxv"]
 [ext_resource type="PackedScene" uid="uid://vlknf7aihp83" path="res://scenes/player.tscn" id="2_yqjtg"]
-[ext_resource type="PackedScene" uid="uid://d2s16oljbgsp1" path="res://scenes/exercise_object.tscn" id="3_lnu2h"]
+[ext_resource type="PackedScene" uid="uid://d2s16oljbgsp1" path="res://scenes/trees.tscn" id="3_lnu2h"]
+[ext_resource type="PackedScene" uid="uid://c7u7kwuovvbtt" path="res://scenes/parked_red_car.tscn" id="5_iywne"]
+[ext_resource type="PackedScene" uid="uid://bqd1pk6u2b636" path="res://scenes/barriers.tscn" id="6_u5sy4"]
+[ext_resource type="PackedScene" uid="uid://bd1n4kbgxh43g" path="res://scenes/boxes.tscn" id="7_gee14"]
+[ext_resource type="PackedScene" uid="uid://cgjdgnxryf1vs" path="res://scenes/post_and_trash.tscn" id="8_gee14"]
+[ext_resource type="PackedScene" uid="uid://etk5utghv270" path="res://scenes/bench.tscn" id="9_0tnpc"]
+[ext_resource type="FontFile" uid="uid://hqpa84d2dqvp" path="res://fonts/Better VCR 9.0.1.ttf" id="10_vtaks"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lnu2h"]
+size = Vector2(20, 687)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lbhrr"]
+size = Vector2(384, 20)
 
 [node name="Game" type="Node2D"]
+script = ExtResource("1_lbhrr")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(1, 48)
+[node name="BG" type="Sprite2D" parent="."]
+position = Vector2(-3, 53)
 texture = ExtResource("1_uwrxv")
+metadata/_edit_lock_ = true
 
-[node name="Player" parent="." instance=ExtResource("2_yqjtg")]
-position = Vector2(24, 34)
+[node name="Borders" type="Node2D" parent="."]
+metadata/_edit_lock_ = true
 
-[node name="ExerciseObject" parent="." instance=ExtResource("3_lnu2h")]
+[node name="StaticBody2D" type="StaticBody2D" parent="Borders"]
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Borders/StaticBody2D"]
+position = Vector2(-205, 48.5)
+shape = SubResource("RectangleShape2D_lnu2h")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="Borders"]
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Borders/StaticBody2D2"]
+position = Vector2(199, 50)
+shape = SubResource("RectangleShape2D_lnu2h")
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="Borders"]
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Borders/StaticBody2D3"]
+position = Vector2(-3, 383)
+shape = SubResource("RectangleShape2D_lbhrr")
+
+[node name="StaticBody2D4" type="StaticBody2D" parent="Borders"]
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Borders/StaticBody2D4"]
+position = Vector2(-3, -277)
+shape = SubResource("RectangleShape2D_lbhrr")
+
+[node name="FinishArea2D" type="Area2D" parent="Borders"]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Borders/FinishArea2D"]
+position = Vector2(-24, 383)
+polygon = PackedVector2Array(-162, -641, -162, -476, 208, -475, 207, -645)
+
+[node name="Timer" type="Node" parent="."]
+
+[node name="CarTimer" type="Timer" parent="Timer"]
+wait_time = 0.2
+autostart = true
+
+[node name="ScoreTimer" type="Timer" parent="Timer"]
+autostart = true
+
+[node name="Objects" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="Player" parent="Objects" instance=ExtResource("2_yqjtg")]
+position = Vector2(-109, 242)
+
+[node name="Tree" parent="Objects" instance=ExtResource("3_lnu2h")]
 position = Vector2(44, 251)
+
+[node name="Tree2" parent="Objects" instance=ExtResource("3_lnu2h")]
+position = Vector2(4, 251)
+
+[node name="Tree3" parent="Objects" instance=ExtResource("3_lnu2h")]
+position = Vector2(-42, 251)
+
+[node name="Tree4" parent="Objects" instance=ExtResource("3_lnu2h")]
+position = Vector2(-150, 252)
+
+[node name="Tree5" parent="Objects" instance=ExtResource("3_lnu2h")]
+position = Vector2(83, 251)
+
+[node name="Tree6" parent="Objects" instance=ExtResource("3_lnu2h")]
+position = Vector2(118, 251)
+
+[node name="Tree7" parent="Objects" instance=ExtResource("3_lnu2h")]
+position = Vector2(148, 251)
+
+[node name="Tree8" parent="Objects" instance=ExtResource("3_lnu2h")]
+position = Vector2(172, 251)
+
+[node name="parkedRedCar" parent="Objects" instance=ExtResource("5_iywne")]
+position = Vector2(-115, 116)
+
+[node name="parkedRedCar2" parent="Objects" instance=ExtResource("5_iywne")]
+position = Vector2(140, 117)
+
+[node name="parkedRedCar3" parent="Objects" instance=ExtResource("5_iywne")]
+position = Vector2(172, 117)
+
+[node name="Barriers" parent="Objects" instance=ExtResource("6_u5sy4")]
+position = Vector2(6, 72)
+
+[node name="Barriers2" parent="Objects" instance=ExtResource("6_u5sy4")]
+position = Vector2(6, 86)
+
+[node name="Barriers3" parent="Objects" instance=ExtResource("6_u5sy4")]
+position = Vector2(37, 108)
+
+[node name="Barriers4" parent="Objects" instance=ExtResource("6_u5sy4")]
+position = Vector2(37, 121)
+
+[node name="Barriers5" parent="Objects" instance=ExtResource("6_u5sy4")]
+position = Vector2(-9, -23)
+
+[node name="Barriers6" parent="Objects" instance=ExtResource("6_u5sy4")]
+position = Vector2(9, -23)
+
+[node name="Barriers7" parent="Objects" instance=ExtResource("6_u5sy4")]
+position = Vector2(28, -23)
+
+[node name="Barriers8" parent="Objects" instance=ExtResource("6_u5sy4")]
+position = Vector2(46, -23)
+
+[node name="Barriers9" parent="Objects" instance=ExtResource("6_u5sy4")]
+position = Vector2(65, -23)
+
+[node name="Barriers10" parent="Objects" instance=ExtResource("6_u5sy4")]
+position = Vector2(83, -23)
+
+[node name="Boxes" parent="Objects" instance=ExtResource("7_gee14")]
+position = Vector2(-36, -23)
+
+[node name="Boxes2" parent="Objects" instance=ExtResource("7_gee14")]
+position = Vector2(-61, -23)
+
+[node name="Boxes3" parent="Objects" instance=ExtResource("7_gee14")]
+position = Vector2(-86, -23)
+
+[node name="Boxes16" parent="Objects" instance=ExtResource("7_gee14")]
+position = Vector2(-115, -23)
+
+[node name="Boxes4" parent="Objects" instance=ExtResource("7_gee14")]
+position = Vector2(103, -23)
+
+[node name="Boxes5" parent="Objects" instance=ExtResource("7_gee14")]
+position = Vector2(127, -23)
+
+[node name="Boxes6" parent="Objects" instance=ExtResource("7_gee14")]
+position = Vector2(-23, 73)
+
+[node name="Boxes7" parent="Objects" instance=ExtResource("7_gee14")]
+position = Vector2(-59, 73)
+
+[node name="Boxes8" parent="Objects" instance=ExtResource("7_gee14")]
+position = Vector2(-83, 73)
+
+[node name="Boxes9" parent="Objects" instance=ExtResource("7_gee14")]
+position = Vector2(-107, 73)
+
+[node name="Boxes14" parent="Objects" instance=ExtResource("7_gee14")]
+position = Vector2(-159, 73)
+
+[node name="Boxes15" parent="Objects" instance=ExtResource("7_gee14")]
+position = Vector2(-185, 73)
+
+[node name="Boxes10" parent="Objects" instance=ExtResource("7_gee14")]
+position = Vector2(58, 81)
+
+[node name="Boxes11" parent="Objects" instance=ExtResource("7_gee14")]
+position = Vector2(82, 81)
+
+[node name="Boxes12" parent="Objects" instance=ExtResource("7_gee14")]
+position = Vector2(134, 85)
+
+[node name="Boxes13" parent="Objects" instance=ExtResource("7_gee14")]
+position = Vector2(158, 85)
+
+[node name="postAndTrash" parent="Objects" instance=ExtResource("8_gee14")]
+position = Vector2(-135, -26)
+
+[node name="postAndTrash2" parent="Objects" instance=ExtResource("8_gee14")]
+position = Vector2(-130, 72)
+
+[node name="postAndTrash5" parent="Objects" instance=ExtResource("8_gee14")]
+position = Vector2(113, 77)
+
+[node name="postAndTrash3" parent="Objects" instance=ExtResource("8_gee14")]
+position = Vector2(57, 118)
+
+[node name="postAndTrash4" parent="Objects" instance=ExtResource("8_gee14")]
+position = Vector2(57, 118)
+
+[node name="Bench" parent="Objects" instance=ExtResource("9_0tnpc")]
+position = Vector2(184, 83)
+
+[node name="Bench2" parent="Objects" instance=ExtResource("9_0tnpc")]
+position = Vector2(-11, 118)
+
+[node name="Bench3" parent="Objects" instance=ExtResource("9_0tnpc")]
+position = Vector2(-11, 103)
+
+[node name="CarStartPositions" type="Node2D" parent="."]
+metadata/_edit_lock_ = true
+
+[node name="Marker2D" type="Marker2D" parent="CarStartPositions"]
+position = Vector2(193, 57)
+
+[node name="Marker2D2" type="Marker2D" parent="CarStartPositions"]
+position = Vector2(194, 2)
+
+[node name="Marker2D3" type="Marker2D" parent="CarStartPositions"]
+position = Vector2(-205, 28)
+
+[node name="Marker2D5" type="Marker2D" parent="CarStartPositions"]
+position = Vector2(-204, -39)
+
+[node name="Marker2D6" type="Marker2D" parent="CarStartPositions"]
+position = Vector2(-201, 145)
+
+[node name="Marker2D7" type="Marker2D" parent="CarStartPositions"]
+position = Vector2(-202, 194)
+
+[node name="Marker2D8" type="Marker2D" parent="CarStartPositions"]
+position = Vector2(194, 168)
+
+[node name="Marker2D9" type="Marker2D" parent="CarStartPositions"]
+position = Vector2(194, 216)
+
+[node name="Marker2D4" type="Marker2D" parent="CarStartPositions"]
+position = Vector2(194, -64)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+anchors_preset = -1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -39.0
+offset_top = 20.0
+offset_right = 20.0
+offset_bottom = 23.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("10_vtaks")
+theme_override_font_sizes/font_size = 40
+text = "0"
+horizontal_alignment = 1
+
+[connection signal="body_entered" from="Borders/FinishArea2D" to="." method="_on_finish_area_2d_body_entered"]
+[connection signal="timeout" from="Timer/CarTimer" to="." method="_on_car_timer_timeout"]
+[connection signal="timeout" from="Timer/ScoreTimer" to="." method="_on_score_timer_timeout"]

@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://cgjdgnxryf1vs"]
+
+[ext_resource type="Texture2D" uid="uid://b778fphjcav0" path="res://graphics/objects/light.png" id="1_a0e3g"]
+[ext_resource type="Texture2D" uid="uid://beho7qo80tneo" path="res://graphics/objects/bin.png" id="2_o1xvg"]
+
+[node name="postAndTrash" type="StaticBody2D"]
+
+[node name="Light" type="Sprite2D" parent="."]
+position = Vector2(-4.5, -8)
+texture = ExtResource("1_a0e3g")
+
+[node name="Bin" type="Sprite2D" parent="."]
+position = Vector2(0.5, 5)
+texture = ExtResource("2_o1xvg")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2(-428.5, -391)
+polygon = PackedVector2Array(431, 398, 431, 393, 427, 393, 425, 393, 425, 385, 423, 385, 423, 393, 423, 394, 427, 394, 427, 398)
