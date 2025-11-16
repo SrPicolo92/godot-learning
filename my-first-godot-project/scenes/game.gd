@@ -8,6 +8,7 @@ func _on_finish_area_2d_body_entered(_body: Node2D) -> void:
 	if score < Global.score || Global.firstGame:
 		Global.score = score
 		Global.firstGame = false
+		Global.won = true
 
 func change_scene():
 	get_tree().change_scene_to_file("res://scenes/title.tscn")
@@ -21,6 +22,7 @@ func _on_car_timer_timeout() -> void:
 
 func go_to_title(_body):
 	call_deferred("change_scene")
+	Global.won = false
 
 
 func _on_score_timer_timeout() -> void:

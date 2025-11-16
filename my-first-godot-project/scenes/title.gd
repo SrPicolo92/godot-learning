@@ -2,6 +2,10 @@ extends Control
 
 func _ready() -> void:
 	$Label2.text = 'High score: ' + str(Global.score)
+	if Global.won:
+		$Label3.text = 'You Win!'
+	else:
+		$Label3.text = 'Too bad. Try again!'
 
 func _physics_process(_delta: float) -> void:
 	if Input.is_action_just_pressed("confirm"):
